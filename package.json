@@ -1,0 +1,38 @@
+{
+  "name": "lib-starter",
+  "version": "0.1.0",
+  "description": "a library starter based on typescript, rollup, karma and mocha",
+  "main": "src/index.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "cm": "cz",
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirages/lib-starter.git"
+  },
+  "keywords": [
+    "lib-starter",
+    "typescript",
+    "rollup",
+    "karma"
+  ],
+  "author": "mirages",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mirages/lib-starter/issues"
+  },
+  "homepage": "https://github.com/mirages/lib-starter#readme",
+  "devDependencies": {
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
