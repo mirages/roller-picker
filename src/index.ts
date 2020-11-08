@@ -6,7 +6,7 @@ export const testStr: string = 'test'
  * @param a
  * @param b
  */
-const testAdd: (a: number, b: number) => number = (
+export const testAdd: (a: number, b: number) => number = (
   a: number,
   b: number
 ): number => {
