@@ -99,3 +99,9 @@
 
   1. 可以参考使用 [js config file](https://github.com/okonet/lint-staged/blob/master/README.md#example-run-tsc-on-changes-to-typescript-files-but-do-not-pass-any-filename-arguments)。
   2. 将 `karma start` 命令添加到 `pre-commit hook` 中：`"pre-commit": "karma start ... && lint-staged"。`
+
+## eslint
+
+`js` 代码检查工具。配置文件为 `.eslintrc.yml`。详情参见：[Configuring ESLint](https://eslint.bootcss.com/docs/user-guide/configuring)。
+
+使用 `eslint --init` 命令按照步骤初始化即可。
