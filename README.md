@@ -1,8 +1,13 @@
 # lib-starter
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+![typescript version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/typescript) ![rollup version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/rollup) ![karma version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/karma) ![mocha version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/mocha) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 一个基于 `typescript` + `rollup` + `karma` + `mocha` 的库开发脚手架
+
+## Env
+
+- `node>=10.13.0` - `lint-staged v10` 对 `node` 版本的要求。
+- `git>=2.13.0` - `husky v4` 对 `git` 版本的要求。
 
 ## commitizen
 
@@ -64,5 +69,33 @@
 
 `karma` 浏览器插件，用于启动本地的 `chrome` 浏览器或者 `ChromeHeadless` 浏览器执行测试用例。
 
+## prettier
 
+代码风格格式化插件，配置文件为 `.prettierrc.yml`。详细配置参见：[prettier](https://prettier.io/docs/en/cli.html)。
 
+## husky
+
+方便自定义 `git hook`，主要用于在 `git commit` 和 `git push` 之前进行一些代码检查之类的操作。
+
+## lint-staged
+
+只对 `git` 暂存区（本次要提交）的内容进行相关检查，例如：`prettier`, `eslint`, `stylelint` 等等。
+
+配置文件为 `.lintstagedrc.yml`。详情参见：[lint-staged](https://github.com/okonet/lint-staged#readme)。
+
+常见问题：
+
+- 某些命令不能添加到 `lint-staged` 中，例如 `karma start`：
+
+  ```yaml
+  # .lintstagedrc.yml
+  "*.ts":
+    # 这里 karma start 命名执行时会报错
+    - karma start --single-run --browsers ChromeHeadless
+    - prettier --write
+  ```
+
+  上面命令执行到 `karma start ...` 时会报错，因为 `lint-staged` 命令会把匹配到的文件作为参数传递给 `karma start ...` 命令，这时会错把 `ts` 文件作为配置文件进行解析，因此会报错。
+
+  1. 可以参考使用 [js config file](https://github.com/okonet/lint-staged/blob/master/README.md#example-run-tsc-on-changes-to-typescript-files-but-do-not-pass-any-filename-arguments)。
+  2. 将 `karma start` 命令添加到 `pre-commit hook` 中：`"pre-commit": "karma start ... && lint-staged"。`
