@@ -1,6 +1,6 @@
-export const testNum: number = 3
+export const testNum = 3
 // 测试字符串
-export const testStr: string = 'test'
+export const testStr = 'test'
 /**
  * 测试函数
  * @param a
