@@ -1,8 +1,24 @@
 # lib-starter
 
-![typescript version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/typescript) ![rollup version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/rollup) ![karma version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/karma) ![mocha version](https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/mocha) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+<p align="center">
+  <a href="https://travis-ci.com/mirages/lib-starter"><img src="https://travis-ci.com/mirages/lib-starter.svg?branch=main" alt="Build Status"/></a>
+  <a href="https://codecov.io/gh/mirages/lib-starter"><img src="https://codecov.io/gh/mirages/lib-starter/branch/main/graph/badge.svg?token=GALVPD9GXI" alt="Coverage Status" /></a>
+</p>
+<p align="center">
+  <a href="https://github.com/microsoft/TypeScript"><img src="https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/typescript" alt="typescript" /></a>
+  <a href="https://github.com/rollup/rollup"><img src="https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/rollup" alt="rollup" /></a>
+  <a href="https://github.com/karma-runner/karma"><img src="https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/karma" alt="karma" /></a>
+  <a href="https://github.com/mochajs/mocha"><img src="https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/mocha" alt="mocha" /></a>
+</p>
+<p align="center">
+  <a href=""><img src="https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/eslint" alt="eslint" /></a>
+  <a><img alt="husky" src="https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/husky"></a>
+  <a><img alt="lint-staged" src="https://img.shields.io/github/package-json/dependency-version/mirages/lib-starter/dev/lint-staged"></a>
+  <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat" alt="prettier" /></a>
+  <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="commitizen" /></a>
+</p>
 
-一个基于 `typescript` + `rollup` + `karma` + `mocha` 的库开发脚手架
+一个基于 `typescript` + `rollup` + `karma` + `mocha` 的库开发脚手架。
 
 ## Env
 
@@ -105,3 +121,17 @@
 `js` 代码检查工具。配置文件为 `.eslintrc.yml`。详情参见：[Configuring ESLint](https://eslint.bootcss.com/docs/user-guide/configuring)。
 
 使用 `eslint --init` 命令按照步骤初始化即可。
+
+## travis-ci
+
+持续集成工具，针对开源项目免费，登录[官网：https://travis-ci.com/](https://travis-ci.com) 注册账号（不要再去 https://travis-ci.org 进行注册了），或直接使用 `github` 账号授权登录。
+
+配置文件为 `.travis.yml`。详情参考：[Travis CI Tutorial](https://docs.travis-ci.com/user/tutorial/)。配置成功后便可以添加自己的 [![Build Status](https://travis-ci.com/mirages/lib-starter.svg?branch=main)](https://travis-ci.com/mirages/lib-starter) 徽标。
+
+*注意避免泄露自己的隐私数据*：[Best Practices in Securing Your Data](https://docs.travis-ci.com/user/best-practices-security/#recommendations-on-how-to-avoid-leaking-secrets-to-build-logs)
+
+## codecov
+
+统计测试覆盖率，针对开源项目免费，登录[官网：https://www.codecov.io/](https://www.codecov.io/) 注册账号，或直接使用 `github` 账号授权登录。
+
+配合 `travis ci` 将每次构建生成的测试覆盖率报告通过 `bash <(curl -s https://codecov.io/bash)` 命令上传到 `codecov` 上。上传成功后便可以添加自己的 [![codecov](https://codecov.io/gh/mirages/lib-starter/branch/main/graph/badge.svg?token=GALVPD9GXI)](https://codecov.io/gh/mirages/lib-starter) 徽标
