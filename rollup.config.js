@@ -16,13 +16,15 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/index.umd.js',
+      dir: "./",
+      entryFileNames: 'dist/[name].umd.js',
       format: 'umd',
-      name: 'lib-starter',
+      name: pkg.name,
       banner
     },
     {
-      file: 'dist/index.esm.js',
+      dir: "./",
+      entryFileNames: 'dist/[name].esm.js',
       format: 'es',
       banner
     }
@@ -31,7 +33,11 @@ export default {
     nodeResolve(),
     commonjs(),
     ts({
-      sourceMap: false
+      sourceMap: false,
+      // 生成 .d.ts 文件。参考：https://github.com/rollup/plugins/issues/61#issuecomment-597090769
+      declaration: true,
+      declarationDir: 'types/',
+      rootDir: 'src/'
     }),
     terser({
       output: {
