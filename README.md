@@ -25,73 +25,51 @@
 - `node>=10.13.0` - `lint-staged v10` 对 `node` 版本的要求。
 - `git>=2.13.0` - `husky v4` 对 `git` 版本的要求。
 
-## commitizen
-
-用于规范 `commit message` 的格式，详见：[commitizen](https://github.com/commitizen/cz-cli)。其中 `"prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"` 用与在执行 `git commit` 命令时可以交互式的输入提交说明信息，交互完成后会展示出最终提交说明的格式，然后在命令行中输入 `:wq` 完成本次提交。
-
-## conventional-changelog-cli
-
-用于生成 `changelog` 文档，详见：[conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)。
-
 ## rollup
 
 `rollup` 打包工具。
 
-### @rollup/plugin-node-resolve
+- `@rollup/plugin-node-resolve` - `typescript` 插件，使用 `node module` 的解析算法，当使用 `node_modules` 中的第三方模块时需要该插件。
 
-`typescript` 插件，使用 `node module` 的解析算法，当使用 `node_modules` 中的第三方模块时需要该插件。
+- `@rollup/plugin-commonjs` - `typescript` 插件，用于将 `CommonJS` 模块转换成 `ES6` 模块。参考：[How do I use Rollup in Node.js with CommonJS modules?](https://rollupjs.org/guide/en/#how-do-i-use-rollup-in-nodejs-with-commonjs-modules)
 
-### @rollup/plugin-commonjs
+- `@rollup/plugin-typescript` - `typescript` 插件，用于将 `ts` 文件编译成 `js` 文件，以便 `rollup` 进行后续处理。
 
-`typescript` 插件，用于将 `CommonJS` 模块转换成 `ES6` 模块。参考：[How do I use Rollup in Node.js with CommonJS modules?](https://rollupjs.org/guide/en/#how-do-i-use-rollup-in-nodejs-with-commonjs-modules)
+- `rollup-plugin-terser` - `typescript` 插件，用于压缩文件。既可以压缩 `es5` 文件，也可以压缩 `es6` 文件。
 
-### @rollup/plugin-typescript
+## mocha
 
-`typescript` 插件，用于将 `ts` 文件编译成 `js` 文件，以便 `rollup` 进行后续处理。
+是一个可以在真实浏览器中运行的测试框架。
 
-### rollup-plugin-terser
+## chai
 
-`typescript` 插件，用于压缩文件。既可以压缩 `es5` 文件，也可以压缩 `es6` 文件。
+断言库，既支持 `Expect/Should` `BDD` 式的断言风格，也支持 `Assert` `TDD` 式的断言风格。
 
 ## karma
 
 `karma` 是一个 `test runner`。
 
-### mocha
+- `karma-mocha` - `karma` 适配器插件，用于适配 `mocha` 测试框架。需要在 `karma.conf.js` 中配置 `client.mocha` 选项进行相关配置。
 
-可以在真实浏览器中运行的测试框架。
+- `karma-mocha-reporter` - `karma` 测试报告插件，用于在控制台中生成 `mocha` 风格的测试报告。需要在 `karma.conf.js` 中配置 `mochaReporter` 选项进行相关配置。
 
-### karma-mocha
+- `karma-chai` - `karma` 适配器插件，用于适配 `chai` 断言库。可以在测试用例中直接使用 `chai.expect` 和 `chai.assert` 以及 `should` 断言，而不需要在每个测试文件中单独 `import` 引入。
 
-`karma` 适配器插件，用于适配 `mocha` 测试框架。需要在 `karma.conf.js` 中配置 `client.mocha` 选项进行相关配置。
+- `karma-typescript` - `karma` 预处理器插件，用于将 `ts` 转换成 `js` 。需要在 `karma.conf.js` 中配置 `karmaTypescriptConfig` 选项进行相关配置。
 
-### karma-mocha-reporter
-
-`karma` 测试报告插件，用于在控制台中生成 `mocha` 风格的测试报告。需要在 `karma.conf.js` 中配置 `mochaReporter` 选项进行相关配置。
-
-### chai
-
-断言库，既支持 `Expect/Should` `BDD` 式的断言风格，也支持 `Assert` `TDD` 式的断言风格。
-
-### karma-chai
-
-`karma` 适配器插件，用于适配 `chai` 断言库。可以在测试用例中直接使用 `chai.expect` 和 `chai.assert` 以及 `should` 断言，而不需要在每个测试文件中单独 `import` 引入。
-
-### karma-typescript
-
-`karma` 预处理器插件，用于将 `ts` 转换成 `js` 。需要在 `karma.conf.js` 中配置 `karmaTypescriptConfig` 选项进行相关配置。
-
-### karma-chrome-launcher
-
-`karma` 浏览器插件，用于启动本地的 `chrome` 浏览器或者 `ChromeHeadless` 浏览器执行测试用例。
-
-## prettier
-
-代码风格格式化插件，配置文件为 `.prettierrc.yml`。详细配置参见：[prettier](https://prettier.io/docs/en/cli.html)。
+- `karma-chrome-launcher` - `karma` 浏览器插件，用于启动本地的 `chrome` 浏览器或者 `ChromeHeadless` 浏览器执行测试用例。
 
 ## husky
 
 方便自定义 `git hook`，主要用于在 `git commit` 和 `git push` 之前进行一些代码检查之类的操作。
+
+## commitizen
+
+用于规范 `commit message` 的格式，详见：[commitizen](https://github.com/commitizen/cz-cli)。
+
+通常和 `husky` 配合使用，在其 `hooks` 中配置 `"prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"` 。在执行 `git commit` 命令时可以交互式的输入提交说明信息，交互完成后会展示出最终提交说明的格式，然后在命令行中输入 `:wq` 完成本次提交。
+
+- `conventional-changelog-cli` - 用于根据 `commitizen` 信息生成 `changelog` 文档，详见：[conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)。
 
 ## lint-staged
 
@@ -101,11 +79,11 @@
 
 常见问题：
 
-- 某些命令不能添加到 `lint-staged` 中，例如 `karma start`：
+- 某些命令不能直接添加到 `lint-staged` 中，例如 `karma start`：
 
   ```yaml
   # .lintstagedrc.yml
-  "*.ts":
+  '*.ts':
     # 这里 karma start 命名执行时会报错
     - karma start --single-run --browsers ChromeHeadless
     - prettier --write
@@ -122,13 +100,17 @@
 
 使用 `eslint --init` 命令按照步骤初始化即可。
 
+## prettier
+
+代码风格格式化插件，配置文件为 `.prettierrc.yml`。详细配置参见：[prettier](https://prettier.io/docs/en/cli.html)。
+
 ## travis-ci
 
 持续集成工具，针对开源项目免费，登录[官网：https://travis-ci.com/](https://travis-ci.com) 注册账号（不要再去 https://travis-ci.org 进行注册了），或直接使用 `github` 账号授权登录。
 
 配置文件为 `.travis.yml`。详情参考：[Travis CI Tutorial](https://docs.travis-ci.com/user/tutorial/)。配置成功后便可以添加自己的 [![Build Status](https://travis-ci.com/mirages/lib-starter.svg?branch=main)](https://travis-ci.com/mirages/lib-starter) 徽标。
 
-*注意避免泄露自己的隐私数据*：[Best Practices in Securing Your Data](https://docs.travis-ci.com/user/best-practices-security/#recommendations-on-how-to-avoid-leaking-secrets-to-build-logs)
+_注意避免泄露自己的隐私数据_：[Best Practices in Securing Your Data](https://docs.travis-ci.com/user/best-practices-security/#recommendations-on-how-to-avoid-leaking-secrets-to-build-logs)
 
 ## codecov
 
