@@ -65,11 +65,45 @@
 
 ## commitizen
 
-用于规范 `commit message` 的格式，详见：[commitizen](https://github.com/commitizen/cz-cli)。
+通过命令行交互的形式规范 `commit message` 的提交格式，详见：[commitizen](https://github.com/commitizen/cz-cli)。
 
-通常和 `husky` 配合使用，在其 `hooks` 中配置 `"prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"` 。在执行 `git commit` 命令时可以交互式的输入提交说明信息，交互完成后会展示出最终提交说明的格式，然后在命令行中输入 `:wq` 完成本次提交。
+- 通过 `npm script` 提交， `package.json` 配置：
+
+  ```json
+  "scripts": {
+    "cm": "cz"
+  }
+  ```
+
+  运行 `npm run cm` 提交。参考：[Optional: Install and run Commitizen locally](https://github.com/commitizen/cz-cli#optional-install-and-run-commitizen-locally)。
+
+- 和 `husky` 配合使用，`package.json` 配置：
+
+  ```json
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  }
+  ```
+
+  直接运行 `git commit` 提交，交互完成后会展示出最终提交信息的格式，然后在命令行中输入 `:wq` 完成本次提交。
+
+  _注意_：在 window 平台直接使用 `git commit` 命令可能会出现问题，参考 [How to husky prepare-commit-msg on windows?](https://github.com/commitizen/cz-cli/issues/627) 其中 [cmd 输出混乱的问题](https://github.com/commitizen/cz-cli/issues/627#issuecomment-551356945)。可通过配置 `npm script` 来提交。
 
 - `conventional-changelog-cli` - 用于根据 `commitizen` 信息生成 `changelog` 文档，详见：[conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)。
+
+- `@commitlint/cli` - 用于校验提交的数据是否符合 `commitizen`。配合 `husky` 使用：
+
+  ```json
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+  ```
+
+- `@commitlint/config-conventional` - `commitizen` 的校验规则配置。配置文件为 `.commitlintrc.yml`，规则参考：[rules](https://github.com/conventional-changelog/commitlint/blob/master/docs/reference-rules.md)。
 
 ## lint-staged
 
@@ -98,11 +132,15 @@
 
 `js` 代码检查工具。配置文件为 `.eslintrc.yml`。详情参见：[Configuring ESLint](https://eslint.bootcss.com/docs/user-guide/configuring)。
 
-使用 `eslint --init` 命令按照步骤初始化即可。
+> 使用 `eslint --init` 命令按照步骤初始化生成 `.eslintrc.yml` 文件即可。
+
+配合 `lint-staged`，在 `.lintstagedrc.yml` 中配置对应的匹配模式。
 
 ## prettier
 
 代码风格格式化插件，配置文件为 `.prettierrc.yml`。详细配置参见：[prettier](https://prettier.io/docs/en/cli.html)。
+
+配合 `lint-staged`，在 `.lintstagedrc.yml` 中配置对应的匹配模式。
 
 ## travis-ci
 
@@ -110,10 +148,15 @@
 
 配置文件为 `.travis.yml`。详情参考：[Travis CI Tutorial](https://docs.travis-ci.com/user/tutorial/)。配置成功后便可以添加自己的 [![Build Status](https://travis-ci.com/mirages/lib-starter.svg?branch=main)](https://travis-ci.com/mirages/lib-starter) 徽标。
 
-_注意避免泄露自己的隐私数据_：[Best Practices in Securing Your Data](https://docs.travis-ci.com/user/best-practices-security/#recommendations-on-how-to-avoid-leaking-secrets-to-build-logs)
+_注意避免泄露自己的隐私数据_：[Best Practices in Securing Your Data](https://docs.travis-ci.com/user/best-practices-security/#recommendations-on-how-to-avoid-leaking-secrets-to-build-logs)。
 
 ## codecov
 
-统计测试覆盖率，针对开源项目免费，登录[官网：https://www.codecov.io/](https://www.codecov.io/) 注册账号，或直接使用 `github` 账号授权登录。
+统计测试覆盖率，针对开源项目免费，登录[官网：https://www.codecov.io/](https://www.codecov.io/) 注册账号，或直接使用 `github` 账号授权登录。将测试覆盖率报告上传到 `codecov` 平台后便可以添加自己的 [![codecov](https://codecov.io/gh/mirages/lib-starter/branch/main/graph/badge.svg?token=GALVPD9GXI)](https://codecov.io/gh/mirages/lib-starter) 徽标。
 
-配合 `travis ci` 将每次构建生成的测试覆盖率报告通过 `bash <(curl -s https://codecov.io/bash)` 命令上传到 `codecov` 上。上传成功后便可以添加自己的 [![codecov](https://codecov.io/gh/mirages/lib-starter/branch/main/graph/badge.svg?token=GALVPD9GXI)](https://codecov.io/gh/mirages/lib-starter) 徽标
+配合 `travis ci` 自动上传测试覆盖率报告，`.travis.yml` 配置：
+
+```yml
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -s ./coverage/
+```
