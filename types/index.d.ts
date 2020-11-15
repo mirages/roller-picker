@@ -6,3 +6,5 @@ export declare const testStr = 'test'
  * @param b
  */
 export declare const testAdd: (a: number, b: number) => number
+export declare const createHtml: () => string
+export declare const createHtml2: () => string
