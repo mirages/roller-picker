@@ -13,11 +13,7 @@ describe('lib-starter test', () => {
     testAdd(1, 2).should.be.equal(3)
     chai.expect(testAdd(1, 2)).to.be.equal(3)
   })
-  it('testAdd(1, 2) should be equal 3', () => {
-    testAdd(1, 2).should.be.equal(3)
-    chai.expect(testAdd(1, 2)).to.be.equal(3)
-  })
-  it('testAdd(1, 2) should be equal 3', () => {
+  it('createHtml() create html string', () => {
     const a = createHtml()
     a.should.be.a('string')
     chai.expect(a).to.be.a('string')
