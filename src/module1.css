@@ -1,10 +1,23 @@
 .head {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 200px;
+
+  color: #333;
   font-size: 18px;
   text-align: center;
-  color: #333;
 }
 
 .body {
-  font-size: 16px;
+  height: 200px;
+
   color: #666;
+  font-size: 16px;
 }
