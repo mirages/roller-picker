@@ -7,6 +7,7 @@ rules:
   declaration-empty-line-before: null
   order/order:
     - custom-properties
+    - at-variables
     - declarations
   order/properties-order:
     -
@@ -14,6 +15,7 @@ rules:
       -
         groupName: position
         emptyLineBefore: always
+        noEmptyLineBetween: true
         properties:
           - position
           - top
@@ -24,24 +26,22 @@ rules:
       -
         groupName: display
         emptyLineBefore: always
+        noEmptyLineBetween: true
         properties:
           - display
           - align-items
           - justify-content
+          - box-sizing
           - overflow
       -
         groupName: size
         emptyLineBefore: always
+        noEmptyLineBetween: true
         properties:
           - width
           - max-width
           - height
           - max-height
-          - margin
-          - margin-top
-          - margin-right
-          - margin-bottom
-          - margin-left
           - padding
           - padding-top
           - padding-right
@@ -52,9 +52,15 @@ rules:
           - border-right
           - border-bottom
           - border-left
+          - margin
+          - margin-top
+          - margin-right
+          - margin-bottom
+          - margin-left
       -
         groupName: transform
         emptyLineBefore: always
+        noEmptyLineBetween: true
         properties:
           - opacity
           - transform
@@ -62,10 +68,15 @@ rules:
       -
         groupName: font
         emptyLineBefore: always
+        noEmptyLineBetween: true
         properties:
           - color
           - font
           - font-family
           - font-size
           - font-weight
+          - line-height
           - text-align
+    -
+      unspecified: bottomAlphabetical
+      emptyLineBeforeUnspecified: always
