@@ -37,6 +37,10 @@
 
 - `rollup-plugin-terser` - `typescript` 插件，用于压缩文件。既可以压缩 `es5` 文件，也可以压缩 `es6` 文件。
 
+- `rollup-plugin-postcss` - `typescript` 插件，用于处理 CSS 文件。配置参考：[rollup-plugin-postcss Options](https://github.com/egoist/rollup-plugin-postcss#options)。
+
+  使用 `options.modules` 选项实现自定义配置的时候，注意需要关闭 `options.autoModules` 选项
+
 ## mocha
 
 是一个可以在真实浏览器中运行的测试框架。
@@ -135,6 +139,29 @@
 > 使用 `eslint --init` 命令按照步骤初始化生成 `.eslintrc.yml` 文件即可。
 
 配合 `lint-staged`，在 `.lintstagedrc.yml` 中配置对应的匹配模式。
+
+## stylelint
+
+`css` 代码检查工具。配置文件为 `.stylelintrc.yml`。详情参见：[Get started](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/get-started.md) 和 [Configure](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/configure.md)。
+
+配合 `lint-staged`，在 `.lintstagedrc.yml` 中配置对应的匹配模式。
+
+**rules**
+
+校验规则配置，已经支持[超过 170 种规则](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules/list.md)配置。
+
+_注意：所有规则默认都不是开启的，并且没有默认值。必须通过配置明确的开启规则。_
+
+可以自定义规则配置，也可以 _extend_ 第三方配置，在此基础上再自定义部分规则。
+
+- `stylelint-config-recommended` - 推荐配置，只开启了[可能是错误写法](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules/list.md#possible-errors)的规则校验。
+- `stylelint-config-standard` - 标准配置，在推荐配置的基础上开启了 60 种 [stylistic rules](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules/list.md#stylistic-issues)。
+
+**plugins**
+
+常用插件：
+
+- `stylelint-order` - css 属性书写顺序规则配置插件。
 
 ## prettier
 
